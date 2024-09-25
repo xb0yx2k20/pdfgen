@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="height: 100vh;"> <!-- Задаем высоту контейнера -->
+        <!-- Левая колонка с текстовой формой -->
+        <div class="col-md-6 d-flex flex-column" style="padding: 20px; overflow-y: auto;">
+            <h1 style="text-align: center; font-weight: bold;">
+                ДОГОВОР АРЕНДЫ НЕЖИЛОГО ПОМЕЩЕНИЯ № 
+                <input type="text" id="num" name="num" class="form-control" oninput="sendData()" required>
+            </h1>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="city" class="form-label">Город:</label>
+                    <input type="text" id="city" name="city" class="form-control" oninput="sendData()" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="date" class="form-label">Дата:</label>
+                    <input type="text" id="date" name="date" class="form-control" oninput="sendData()" required>
+                </div>
+            </div>
+
+            <p>
+                ООО « <input type="text" id="landlordName" name="landlordName" oninput="sendData()" required>» 
+                в лице <input type="text" id="landlordUserName" name="landlordUserName" oninput="sendData()" required>, 
+                действующего на основании <input type="text" id="baseWork" name="baseWork" oninput="sendData()" required> (далее — «Арендодатель»), с одной стороны, и
+                ООО « <input type="text" id="renterName" name="renterName" oninput="sendData()" required> » 
+                в лице <input type="text" id="renterUserName" name="renterUserName" oninput="sendData()" required>, действующего 
+                на основании <input type="text" id="base1Work" name="base1Work" oninput="sendData()" required> (далее — «Арендатор»), с другой стороны,
+                заключили настоящий договор о нижеследующем:
+            </p>
+            <!-- Остальной текст формы -->
+            <div class="blk1">
+                <h3 style="text-align: center; font-weight: bold;">1. ПРЕДМЕТ ДОГОВОРА</h3>
+                <p>
+                    1.1. Арендодатель сдает Арендатору в аренду нежилое помещение площадью <input type="text" id="areaNonRes" name="areaNonRes" oninput="sendData()" required> кв. м,
+                    в том числе торговая площадь <input type="text" id="areaMall" name="areaMall" oninput="sendData()" required> кв. м, расположенное по адресу: <input type="text" id="address" name="address" oninput="sendData()" required> <br>
+                    1.2. Арендатор принимает указанное в п. 1.1. договорное нежилое помещение для осуществления
+                    своей хозяйственной деятельности. <br>
+                    1.3. Переданное в аренду строение является собственностью Арендодателя, результаты хозяйственной деятельности Арендатора с использованием арендованного строения принадлежат Арендатору.
+                    <br>
+                    Отделимые улучшения арендованного строения, осуществленные за счет собственных средств Арендатора, являются его собственностью.
+                    <br>
+                    Неотделимые улучшения арендованного строения после прекращения действия настоящего договора безвозмездно переходят в собственность Арендодателя.
+                </p>
+            </div>
+
+            <div class="blk2">
+                <h3 style="text-align: center; font-weight: bold;">2. ПРАВА И ОБЯЗАННОСТИ СТОРОН</h3>
+                <p>
+                    2.1. Арендатору предоставляется право контролировать исполнение Арендатором условий договора. <br>
+                    2.2. Арендатор обеспечивает сохранность принятого в аренду помещения, за свой счет производит текущий и капитальный ремонт, ремонт инженерных сетей, ЭСО и государственного пожарного надзора. <br>
+                    2.3. Сдача арендованного помещения в субаренду производится только Арендодателем по соглашению с Арендатором. <br>
+                    2.4. Арендатор обязан соблюдать условия хозяйственной эксплуатации арендованного помещения. <br>
+                    2.5. Арендатор имеет право производить перепланировку и переоборудование арендованного помещения только при наличии на то письменного согласия Арендодателя, если такая перепланировка или переоборудование не ухудшает техническое состояние элементов и конструкций помещения. <br>
+                    2.6. За пределами обязательств по настоящему договору Арендатор свободен в осуществлении своей хозяйственной деятельности. <br>
+                </p>
+            </div>
+
+            <div class="blk3">
+                <h3 style="text-align: center; font-weight: bold;">3. РАСЧЕТЫ ПО ДОГОВОРУ</h3>
+                <p>
+                    3.1. За аренду указанного в п.1.1. договора помещения Арендатор перечисляет арендную плату с учетом (без учета пользования коммунальными услугами и электроэнергией) в размере <input type="text" id="price" name="price" oninput="sendData()" required> рублей. <br>
+                    3.2. Перечисление арендной платы производится ежемесячно в срок до <input type="text" id="deadline" name="deadline" oninput="sendData()" required> числа месяца, следующего за расчетным.
+                </p>
+            </div>
+
+            <button type="button" class="btn btn-primary mt-3" onclick="clearStorage()">Очистить поля</button>
+        </div>
+
+        <!-- Правая колонка с предпросмотром PDF -->
+        <div class="col-md-6" style="padding: 0;">
+            <object id="pdfPreview" type="application/pdf" width="100%" height="100%">
+                <p>Ваш браузер не поддерживает просмотр PDF. <a href="{{ pdfsrc }}">Скачайте PDF файл</a>.</p>
+            </object>
+            <a href="/download_pdf" download>
+                <button type="button" class="btn btn-primary mt-3" >Скачать PDF</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Подключение Bootstrap JS и других зависимостей -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+<script>
+    const socket = io();
+
+    // Функция для загрузки данных из localStorage
+    function loadData() {
+        const fields = ['city', 'date', 'landlordName', 'landlordUserName', 'baseWork', 
+                        'renterName', 'renterUserName', 'base1Work', 'areaNonRes', 
+                        'areaMall', 'address', 'price', 'deadline', 'num'];
+        
+        fields.forEach(field => {
+            const value = localStorage.getItem(field);
+            // if (value) {
+            document.getElementById(field).value = value; // Заполняем поле данными
+            
+        });
+        const formData = {};
+
+        fields.forEach(field => {
+            formData[field] = document.getElementById(field).value;
+        });
+        socket.emit('update_data_nrpla', formData);
+
+    }
+    
+
+    // Функция отправки данных на сервер при каждом изменении
+    function sendData() {
+        const fields = ['city', 'date', 'landlordName', 'num', 'landlordUserName', 'baseWork', 
+                    'renterName', 'renterUserName', 'base1Work', 'areaNonRes', 'areaMall', 
+                    'address', 'price', 'deadline'];
+        const formData = {};
+    
+        fields.forEach(field => {
+            formData[field] = document.getElementById(field).value;
+            const value = formData[field]
+            localStorage.setItem(field, value); // Сохраняем данные в localStorage
+        });
+
+        // Отправляем данные на сервер через WebSocket
+        socket.emit('update_data_nrpla', formData);
+    }
+
+    // Получение обновленного PDF и отображение в object
+    socket.on('update_pdf', function(data) {
+        if (data.error) {
+            console.error('Error generating PDF:', data.error);
+        } else {
+            // Преобразуем строку обратно в бинарный PDF файл
+            const pdfBlob = new Blob([new Uint8Array(data.pdf_data.split('').map(char => char.charCodeAt(0)))], { type: 'application/pdf' });
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+            document.getElementById('pdfPreview').data = pdfUrl;
+        }
+    });
+
+    function clearStorage() {
+        localStorage.clear();
+        loadData();
+        alert('Очищено!')
+    }
+
+    window.onload = loadData;
+</script>
+{% endblock %}

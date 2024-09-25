@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown to PDF Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .dropzone {
+            border: 2px dashed #4CAF50;
+            padding: 50px;
+            border-radius: 10px;
+            background-color: #fafafa;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .dropzone:hover {
+            background-color: #e8f5e9;
+        }
+
+        .dropzone p {
+            margin: 0;
+            font-size: 18px;
+            color: #999;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #4CAF50;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Drag & Drop Your Markdown File</h1>
+        <div id="dropzone" class="dropzone">
+            <p>Drop your .md or .zip file here</p>
+        </div>
+        <input type="file" id="fileInput" accept=".md,.zip" style="display: none;">
+        <button id="selectFileBtn">Select File</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const selectFileBtn = document.getElementById('selectFileBtn');
+        const message = document.getElementById('message');
+
+        dropzone.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('dragover');
+        });
+
+        dropzone.addEventListener('drop', async (event) => {
+            event.preventDefault();
+            dropzone.classList.remove('dragover');
+
+            const files = event.dataTransfer.files;
+            if (files.length > 0) {
+                await handleFileUpload(files[0]);
+            }
+        });
+
+        selectFileBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', async () => {
+            const files = fileInput.files;
+            if (files.length > 0) {
+                await handleFileUpload(files[0]);
+            }
+        });
+
+        async function handleFileUpload(file) {
+            const fileName = file.name.toLowerCase();
+            if (file.type === "text/markdown" || fileName.endsWith('.md') || fileName.endsWith('.zip')) {
+                message.textContent = "Uploading...";
+                await uploadFile(file);
+            } else {
+                message.textContent = "Please select a valid .md or .zip file";
+            }
+        }
+
+        async function uploadFile(file) {
+            const originalFileName = file.name.split('.').slice(0, -1).join('.'); 
+
+            try {
+                const response = await fetch('http://194.67.88.154:8080/report', {
+                    method: 'POST',
+                    body: file
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const downloadUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = downloadUrl;
+                    a.download = `${originalFileName}.pdf`; 
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    message.textContent = "File successfully converted!";
+                } else {
+                    message.textContent = "Error during file conversion.";
+                }
+            } catch (error) {
+                message.textContent = error;
+            }
+        }
+    </script>
+</body>
+</html>

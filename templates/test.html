@@ -1,0 +1,20 @@
+<style>
+    input[type="text"] {
+        width: 10ch; /* Ширина на 10 символов по умолчанию */
+        padding: 5px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: width 0.3s ease; /* Плавный переход при изменении размера */
+    }
+
+    input[type="text"]:focus {
+        outline: none;
+        border-color: #4A90E2;
+    }
+</style>
+
+<p>
+    Введите текст: 
+    <input type="text" name="dynamicInput" required>
+</p>

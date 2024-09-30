@@ -64,7 +64,7 @@ def handle_update_data_nrpla(data):
         emit('update_pdf', {'error': 'Error generating PDF'})
 
 
-@app.route('/letter')
+@app.route('/')
 def index_letter():
     return render_template('test.html')
 

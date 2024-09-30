@@ -7,9 +7,6 @@ from jinja2 import Environment, FileSystemLoader
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-# Настройки Jinja2
-template_dir = 'static'
-env = Environment(loader=FileSystemLoader(template_dir))
 
 @app.route('/nrpla')
 def index_nrpla():
@@ -18,6 +15,10 @@ def index_nrpla():
 # Обработчик для получения данных через WebSocket
 @socketio.on('update_data_nrpla')
 def handle_update_data_nrpla(data):
+    # Настройки Jinja2
+    template_dir = 'templates/buketic'
+    env = Environment(loader=FileSystemLoader(template_dir))
+
     city = data.get('city')
     date = data.get('date')
     landlordName = data.get('landlordName')
@@ -34,21 +35,23 @@ def handle_update_data_nrpla(data):
     deadline = data.get('deadline')
 
     # Рендеринг шаблона, настройка Jinja2
-    template_file = 'template.tex'
+    template_file = 'NRPLAtemplate.tex'
     template = env.get_template(template_file)
 
     rendered_tex = template.render(price=price, deadline=deadline, city=city, date=date, landlordName=landlordName, num=num, baseWork=baseWork, landlordUserName=landlordUserName, renterName=renterName, renterUserName=renterUserName, base1Work=base1Work, areaNonRes=areaNonRes, areaMall=areaMall, address=address)
 
     # Сохранение отрендеренного шаблона в файл
-    tex_file_path = 'output.tex'
-    pdf_file_path = 'output.pdf'
+    tex_file_path = 'templates/buketic/output/NRPLAoutput.tex'
+    pdf_file_path = 'NRPLAoutput.pdf'
     
     with open(tex_file_path, 'w', encoding='utf-8') as f:
         f.write(rendered_tex)
 
     # Компиляция .tex файла в PDF с использованием pdflatex
     try:
+        # os.chdir("templates/buketic/output")
         subprocess.run(['pdflatex', '-interaction=nonstopmode', tex_file_path], check=True)
+        # os.chdir("../../../")
 
         # Отправляем PDF обратно клиенту для обновления превью
         with open(pdf_file_path, 'rb') as pdf_file:
@@ -56,9 +59,7 @@ def handle_update_data_nrpla(data):
 
         emit('update_pdf', {'pdf_data': pdf_data.decode('latin-1')})  # Кодируем PDF как строку для передачи
 
-        # Удаление временных файлов (.aux, .log, .tex)
-        # clean_up_files(['output.aux', 'output.log'])
-        
+
     except subprocess.CalledProcessError as e:
         print(f"Error during pdflatex compilation: {e}")
         emit('update_pdf', {'error': 'Error generating PDF'})
@@ -75,7 +76,7 @@ def index_MgtuReport():
 # Маршрут для скачивания PDF
 @app.route('/download_pdf')
 def download_pdf():
-    pdf_file_path = 'output.pdf'
+    pdf_file_path = 'NRPLAoutput.pdf'
     return send_file(pdf_file_path, as_attachment=True)
 
 # Функция для удаления временных файлов

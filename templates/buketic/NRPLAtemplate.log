@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.17)  30 SEP 2024 18:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.17)  30 SEP 2024 17:53
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**templates/buketic/output/output.tex
-(./templates/buketic/output/output.tex
+**/Users/xb0yx2k20/Documents/pdfgen/static/buketic/NRPLAtemplate.tex
+(/Users/xb0yx2k20/Documents/pdfgen/static/buketic/NRPLAtemplate.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -22,26 +23,21 @@ File: size11.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
-)
-(/usr/local/texlive/2024/texmf-dist/tex/latex/base/inputenc.sty
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
-)
-(/usr/local/texlive/2024/texmf-dist/tex/latex/base/fontenc.sty
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-)
-(/usr/local/texlive/2024/texmf-dist/tex/generic/babel/babel.sty
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2024/02/07 v24.2 The Babel package
 \babel@savecnt=\count196
 \U@D=\dimen141
 \l@unhyphenated=\language89
-
-(/usr/local/texlive/2024/texmf-dist/tex/generic/babel/txtbabel.def)
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count197
-
-(/usr/local/texlive/2024/texmf-dist/tex/generic/babel-russian/russianb.ldf
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/babel-russian/russianb.ldf
 File: russianb.ldf 2021/01/10 1.3m Russian support for the Babel system
 Language: russian 2020/09/09 1.3k Russian support for the Babel system
 
@@ -50,13 +46,11 @@ Package babel Warning: No Cyrillic font encoding has been loaded so far.
 (babel)                A font encoding should be declared before babel.
 (babel)                Default `T2A' encoding will be loaded  on input line 78.
 
-
 (/usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2aenc.def
 File: t2aenc.def 2022/06/11 v1.0j Cyrillic encoding definition file
 Now handling font encoding T2A ...
 ... processing UTF-8 mapping file for font encoding T2A
-
-(/usr/local/texlive/2024/texmf-dist/tex/latex/base/t2aenc.dfu
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t2aenc.dfu
 File: t2aenc.dfu 2022/06/07 v1.3c UTF-8 support
    defining Unicode char U+00A4 (decimal 164)
    defining Unicode char U+00A7 (decimal 167)
@@ -259,22 +253,17 @@ File: t2aenc.dfu 2022/06/07 v1.3c UTF-8 support
 ))
 Package babel Info: Making " an active character on input line 124.
 Package babel Info: Default for \cyrdash is provided on input line 163.
-))
-(/usr/local/texlive/2024/texmf-dist/tex/generic/babel/locale/ru/babel-russian.t
-ex
+)) (/usr/local/texlive/2024/texmf-dist/tex/generic/babel/locale/ru/babel-russian.tex
 Package babel Info: Importing font and identification data for russian
 (babel)             from babel-ru.ini. Reported on input line 11.
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-
-(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
-)
-(/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
+) (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
-
-(/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
+ (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
 \Gm@cnth=\count198
@@ -289,8 +278,7 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layouthoffset=\dimen148
 \Gm@layoutvoffset=\dimen149
 \Gm@dimlist=\toks20
-)
-(/usr/local/texlive/2024/texmf-dist/tex/latex/titlesec/titlesec.sty
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \ttl@box=\box51
 \beforetitleunit=\skip50
@@ -301,14 +289,16 @@ Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \titlewidth=\dimen152
 \titlewidthlast=\dimen153
 \titlewidthfirst=\dimen154
-)
-(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count267
 \l__pdf_internal_box=\box52
-)
-(./output.aux)
-\openout1 = `output.aux'.
+) (./NRPLAtemplate.aux
+LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 5.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
+File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+))
+\openout1 = `NRPLAtemplate.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
@@ -325,11 +315,6 @@ LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 23.
-LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 2
-3.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
-File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-)
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Info: Redefining \th on input line 23.
 
@@ -375,33 +360,27 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 32.
 
 Overfull \hbox (1.41537pt too wide) in paragraph at lines 57--59
-\T2A/cmr/m/n/10.95 ствен-ной де-€-тель-но-сти јрен-да-то-ра с ис-поль-зо-ва-ни-
-ем арен-до-ван-но-го стро-е-ни€ при-над-ле-жат јрен-
+\T2A/cmr/m/n/10.95 ствен-ной де-€-тель-но-сти јрен-да-то-ра с ис-поль-зо-ва-ни-ем арен-до-ван-но-го стро-е-ни€ при-над-ле-жат јрен-
  []
 
 [1
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
-al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}]
-(./output.aux)
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}] (./NRPLAtemplate.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3149 strings out of 474116
- 48973 string characters out of 5743682
- 1932187 words of memory out of 5000000
+ 3150 strings out of 474116
+ 49133 string characters out of 5743682
+ 1933187 words of memory out of 5000000
  25527 multiletter control sequences out of 15000+600000
  565709 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,5n,65p,552b,156s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb>
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></
-usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></us
-r/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on output.pdf (1 page, 83611 bytes).
+ 57i,5n,65p,583b,196s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on NRPLAtemplate.pdf (1 page, 89752 bytes).
 PDF statistics:
  29 PDF objects out of 1000 (max. 8388607)
  17 compressed objects within 1 object stream

@@ -1,0 +1,77 @@
+\documentclass[a4paper,12pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+
+\pagestyle{empty}
+
+% Поля документа
+\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=0.5cm]{geometry}
+
+\begin{document}
+
+% Заголовок компании и адресат
+\noindent
+\begin{minipage}[t]{0.5\textwidth}
+    \vspace{0pt} % Выравнивание по верхнему краю
+    \includegraphics[width=0.5\textwidth]{A.png} \\ % вставьте логотип
+    \textbf{ООО "А Плюс"} \\
+    ИНН 9707030824 \\
+    КПП 770701001 \\
+    № \textbf{ {{num}} } от \textbf{ {{date}} } \\
+\end{minipage}%
+
+\begin{minipage}[t]{0.5\textwidth}
+    \textit{\textbf{ {{about}} }} \\
+    \textbf{Объект:} {{object}} \\
+    \textbf{Адрес:} {{address}}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+    \raggedleft
+    \bfseries
+    {{whom}}
+\end{minipage}
+
+\vspace{1cm}
+
+% Тело письма
+\begin{center}
+    \textbf{ {{dear}} }
+\end{center}
+
+
+\vspace{0.5cm}
+
+{{body}}
+
+\vspace{1cm}
+
+
+\begin{minipage}[t]{0.4\textwidth}
+    \textbf{Генеральный директор}
+\end{minipage}%
+\begin{minipage}[t]{0.2\textwidth}
+    \centering
+    \underline{\hspace{5cm}}
+\end{minipage}%
+\begin{minipage}[t]{0.4\textwidth}
+    \raggedleft
+    \textbf{Е.С. Воронин}
+\end{minipage}
+
+
+\vfill
+
+\noindent
+\itshape
+Исп.: {{nameSend}} \\
+{{numSend}} \\
+{{email}}
+
+\noindent\makebox[\linewidth]{\rule{1\paperwidth}{0.4pt}}
+\noindent
+\centering
+\fontsize{9}{10}\selectfont
+127006, г. Москва, ул. Малая Дмитровка, д. 18А, стр. 3, e-mail: info@a-pluse.ru
+% \noindent\hrulefill
+\end{document}

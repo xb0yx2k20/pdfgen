@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.17)  30 SEP 2024 18:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.17)  1 OCT 2024 17:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -394,18 +394,18 @@ L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3521 strings out of 474116
- 55477 string characters out of 5743682
+ 3519 strings out of 474116
+ 55453 string characters out of 5743682
  1928187 words of memory out of 5000000
- 25873 multiletter control sequences out of 15000+600000
- 566208 words of font info for 52 fonts, out of 8000000 for 9000
+ 25872 multiletter control sequences out of 15000+600000
+ 565318 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,301b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on APLtemplate.pdf (1 page, 101377 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on APLtemplate.pdf (1 page, 97931 bytes).
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
- 21 compressed objects within 1 object stream
+ 32 PDF objects out of 1000 (max. 8388607)
+ 18 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

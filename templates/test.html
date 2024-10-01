@@ -1,20 +1,29 @@
-<style>
-    input[type="text"] {
-        width: 10ch; /* Ширина на 10 символов по умолчанию */
-        padding: 5px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: width 0.3s ease; /* Плавный переход при изменении размера */
-    }
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Динамическое поле ввода</title>
+    <style>
+        textarea {
+            width: 100%;
+            overflow: hidden; /* Скрываем полосу прокрутки */
+            resize: none; /* Запрет на изменение размера вручную */
+        }
+    </style>
+</head>
+<body>
 
-    input[type="text"]:focus {
-        outline: none;
-        border-color: #4A90E2;
-    }
-</style>
+<textarea id="dynamicTextarea" placeholder="Введите текст..."></textarea>
 
-<p>
-    Введите текст: 
-    <input type="text" name="dynamicInput" required>
-</p>
+<script>
+    const textarea = document.getElementById('dynamicTextarea');
+
+    textarea.addEventListener('input', function() {
+        this.style.height = 'auto'; // Сбрасываем высоту
+        this.style.height = this.scrollHeight + 'px'; // Устанавливаем новую высоту
+    });
+</script>
+
+</body>
+</html>

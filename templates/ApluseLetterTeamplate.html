@@ -5,43 +5,21 @@
     <div class="row" style="height: 100vh;"> <!-- Задаем высоту контейнера -->
         <!-- Левая колонка с текстовой формой -->
         <div class="col-md-6 d-flex flex-column" style="padding: 20px; overflow-y: auto;">
-            <h1 style="text-align: center; font-weight: bold;">
-                ДОГОВОР АРЕНДЫ НЕЖИЛОГО ПОМЕЩЕНИЯ № 
-                <input type="text" id="num" name="num" class="form-control" oninput="sendData()" required>
-            </h1>
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="city" class="form-label">Город:</label>
-                    <input type="text" id="city" name="city" class="form-control" oninput="sendData()" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="date" class="form-label">Дата:</label>
-                    <input type="text" id="date" name="date" class="form-control" oninput="sendData()" required>
-                </div>
-            </div>
 
             <p>
                 Письмо о « <input type="text" id="about" name="about" oninput="sendData()" required>» <br>
                 Объект:  <input type="text" id="object" name="object" oninput="sendData()" required> <br> 
                 Адрес: <input type="text" id="address" name="address" oninput="sendData()" required> 
-                Кому: <input type="text" id="whom" name="whom" oninput="sendData()" required>
+                Кому: <input type="text" id="whom" name="whom" oninput="sendData()" required> <br>
+                Обращение: <input type="text" id="dear" name="dear" oninput="sendData()" required> <br>
+                Тело: <textarea id="body" name="body" style="
+                    width: 50%;
+                    overflow: hidden; /* Скрываем полосу прокрутки */
+                    resize: none; /* Запрет на изменение размера вручную */"
+
+                placeholder="Введите текст..."></textarea>
             </p>
-            <!-- Остальной текст формы -->
-            <div class="blk1">
-                <h3 style="text-align: center; font-weight: bold;">1. ПРЕДМЕТ ДОГОВОРА</h3>
-                
-            </div>
-
-            <div class="blk2">
-                <h3 style="text-align: center; font-weight: bold;">2. ПРАВА И ОБЯЗАННОСТИ СТОРОН</h3>
-                
-            </div>
-
-            <div class="blk3">
-                <h3 style="text-align: center; font-weight: bold;">3. РАСЧЕТЫ ПО ДОГОВОРУ</h3>
-                
-            </div>
 
             <button type="button" class="btn btn-primary mt-3" onclick="clearStorage()">Очистить поля</button>
         </div>
@@ -65,9 +43,22 @@
 <script>
     const socket = io();
 
+    const textarea = document.getElementById('body');
+
+    textarea.addEventListener('input', function() {
+        this.style.height = 'auto'; // Сбрасываем высоту
+        this.style.height = this.scrollHeight + 'px'; // Устанавливаем новую высоту
+        
+        const text = textarea.value; // Получаем текст из textarea
+
+        sendData();
+        
+
+    });
+
     // Функция для загрузки данных из localStorage
     function loadData() {
-        const fields = ['about', 'object', 'address', 'whom'];
+        const fields = ['about', 'object', 'address', 'whom', 'dear', 'body'];
         
         fields.forEach(field => {
             const value = localStorage.getItem(field);
@@ -87,7 +78,7 @@
 
     // Функция отправки данных на сервер при каждом изменении
     function sendData() {
-        const fields = ['about', 'object', 'address', 'whom'];
+        const fields = ['about', 'object', 'address', 'whom', 'dear', 'body'];
         const formData = {};
     
         fields.forEach(field => {

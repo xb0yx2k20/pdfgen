@@ -6,7 +6,7 @@
     <title>Динамическое поле ввода</title>
     <style>
         textarea {
-            width: 100%;
+            width: 50%;
             overflow: hidden; /* Скрываем полосу прокрутки */
             resize: none; /* Запрет на изменение размера вручную */
         }
@@ -15,13 +15,19 @@
 <body>
 
 <textarea id="dynamicTextarea" placeholder="Введите текст..."></textarea>
+<div id="output"></div>
 
 <script>
     const textarea = document.getElementById('dynamicTextarea');
+    const output = document.getElementById('output');
 
     textarea.addEventListener('input', function() {
         this.style.height = 'auto'; // Сбрасываем высоту
         this.style.height = this.scrollHeight + 'px'; // Устанавливаем новую высоту
+        
+        const text = textarea.value; // Получаем текст из textarea
+        console.log(text)
+        output.textContent = 'Введенный текст: ' + text; // Отображаем текст
     });
 </script>
 

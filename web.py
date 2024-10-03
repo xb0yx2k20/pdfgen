@@ -102,7 +102,9 @@ def handle_update_data_apluseletter(data):
         'about': "\\textbf{" + data.get('about') + "}",
         'object': data.get('object'),
         'address': data.get('address'),
-        'whom': data.get('whom')
+        'whom': data.get('whom'),
+        'dear': data.get('dear'),
+        'body': data.get('body')
     }
 
     # Пути к файлам
@@ -149,4 +151,4 @@ def clean_up_files(file_list):
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', debug=True, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', port=3333, debug=True, allow_unsafe_werkzeug=True)

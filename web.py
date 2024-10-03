@@ -27,14 +27,23 @@ def render_and_save_template(template_dir, template_file, output_tex_path, **tem
     with open(output_tex_path, 'w', encoding='utf-8') as f:
         f.write(rendered_tex)
 
-
 # Функция для компиляции .tex файла в PDF
-def compile_tex_to_pdf(tex_file_path):
+def compile_tex_to_pdf(tex_file_path, pdf_file_directory):
     try:
-        subprocess.run(['pdflatex', '-interaction=nonstopmode', tex_file_path], check=True)
+        # Проверка, существует ли директория
+        if not os.path.exists(pdf_file_directory):
+            print(f"Directory does not exist: {pdf_file_directory}")
+            return False
+
+        subprocess.run(['pdflatex', '-output-directory=' + pdf_file_directory, tex_file_path], check=True)
+
         return True
+
     except subprocess.CalledProcessError as e:
         print(f"Error during pdflatex compilation: {e}")
+        return False
+    except Exception as e:
+        print(f"An error occurred: {e}")
         return False
 
 
@@ -71,15 +80,18 @@ def handle_update_data_nrpla(data):
     }
 
     # Пути к файлам
-    template_dir = 'templates/buketic'
+    template_dir = 'outputs/buketic'
     template_file = 'NRPLAtemplate.tex'
-    tex_file_path = 'templates/buketic/output/NRPLAoutput.tex'
-    pdf_file_path = 'NRPLAoutput.pdf'
+    tex_file_path = 'outputs/buketic/output/NRPLAoutput.tex'
+    pdf_file_path = 'outputs/buketic/output/NRPLAoutput.pdf'
+    pdf_file_directory = 'outputs/buketic/output'
+
+    
 
     # Рендеринг и компиляция
     render_and_save_template(template_dir, template_file, tex_file_path, **template_vars)
 
-    if compile_tex_to_pdf(tex_file_path):
+    if compile_tex_to_pdf(tex_file_path, pdf_file_directory):
         send_pdf_via_socket(pdf_file_path)
     else:
         emit('update_pdf', {'error': 'Error generating PDF'})
@@ -91,22 +103,22 @@ def handle_update_data_apluseletter(data):
     # Данные для шаблона
     template_vars = {
         'about': "\\textbf{" + data.get('about') + "}",
-        'object': data.get('object'),  # Временно жестко зашитые данные
+        'object': data.get('object'),
         'address': data.get('address'),
         'whom': data.get('whom')
     }
 
-
     # Пути к файлам
-    template_dir = 'templates/ApluSeLetter'
+    template_dir = 'outputs/ApluSeLetter'
     template_file = 'APLtemplate.tex'
-    tex_file_path = 'templates/ApluSeLetter/output/ApluSeoutput.tex'
-    pdf_file_path = 'ApluSeoutput.pdf'
+    tex_file_path = 'outputs/ApluSeLetter/output/ApluSeoutput.tex'
+    pdf_file_path = 'outputs/ApluSeLetter/output/ApluSeoutput.pdf'
+    pdf_file_directory = 'outputs/ApluSeLetter/output'
 
     # Рендеринг и компиляция
     render_and_save_template(template_dir, template_file, tex_file_path, **template_vars)
 
-    if compile_tex_to_pdf(tex_file_path):
+    if compile_tex_to_pdf(tex_file_path, pdf_file_directory):
         send_pdf_via_socket(pdf_file_path)
     else:
         emit('update_pdf', {'error': 'Error generating PDF'})
@@ -141,4 +153,4 @@ def clean_up_files(file_list):
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True, allow_unsafe_werkzeug=True)

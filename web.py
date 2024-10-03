@@ -2,11 +2,10 @@ import subprocess
 import os
 from flask import Flask, render_template, send_file
 from flask_socketio import SocketIO, emit
-from jinja2 import Environment, FileSystemLoader
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 @app.route('/nrpla')
 def index_nrpla():
@@ -19,13 +18,14 @@ def index_a():
 
 
 # Функция для рендеринга шаблона и сохранения в файл
-def render_and_save_template(template_dir, template_file, output_tex_path, **template_vars):
-    env = Environment(loader=FileSystemLoader(template_dir))
-    template = env.get_template(template_file)
-    rendered_tex = template.render(**template_vars)
+def render_and_save_template(template_file, output_tex_path, **template_vars):
+
+
+    rendered_tex = render_template(template_file, **template_vars)
 
     with open(output_tex_path, 'w', encoding='utf-8') as f:
         f.write(rendered_tex)
+
 
 # Функция для компиляции .tex файла в PDF
 def compile_tex_to_pdf(tex_file_path, pdf_file_directory):
@@ -80,16 +80,13 @@ def handle_update_data_nrpla(data):
     }
 
     # Пути к файлам
-    template_dir = 'outputs/buketic'
     template_file = 'NRPLAtemplate.tex'
-    tex_file_path = 'outputs/buketic/output/NRPLAoutput.tex'
-    pdf_file_path = 'outputs/buketic/output/NRPLAoutput.pdf'
-    pdf_file_directory = 'outputs/buketic/output'
-
-    
+    tex_file_path = 'templates/outputs/buketic/output/NRPLAoutput.tex'
+    pdf_file_path = 'templates/outputs/buketic/output/NRPLAoutput.pdf'
+    pdf_file_directory = 'templates/outputs/buketic/output'
 
     # Рендеринг и компиляция
-    render_and_save_template(template_dir, template_file, tex_file_path, **template_vars)
+    render_and_save_template(template_file, tex_file_path, **template_vars)
 
     if compile_tex_to_pdf(tex_file_path, pdf_file_directory):
         send_pdf_via_socket(pdf_file_path)
@@ -109,14 +106,13 @@ def handle_update_data_apluseletter(data):
     }
 
     # Пути к файлам
-    template_dir = 'outputs/ApluSeLetter'
     template_file = 'APLtemplate.tex'
-    tex_file_path = 'outputs/ApluSeLetter/output/ApluSeoutput.tex'
-    pdf_file_path = 'outputs/ApluSeLetter/output/ApluSeoutput.pdf'
-    pdf_file_directory = 'outputs/ApluSeLetter/output'
+    tex_file_path = 'templates/outputs/ApluSeLetter/output/ApluSeoutput.tex'
+    pdf_file_path = 'templates/outputs/ApluSeLetter/output/ApluSeoutput.pdf'
+    pdf_file_directory = 'templates/outputs/ApluSeLetter/output'
 
     # Рендеринг и компиляция
-    render_and_save_template(template_dir, template_file, tex_file_path, **template_vars)
+    render_and_save_template(template_file, tex_file_path, **template_vars)
 
     if compile_tex_to_pdf(tex_file_path, pdf_file_directory):
         send_pdf_via_socket(pdf_file_path)

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.17)  3 OCT 2024 15:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.17)  3 OCT 2024 17:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**outputs/ApluSeLetter/output/ApluSeoutput.tex
-(./outputs/ApluSeLetter/output/ApluSeoutput.tex
+**templates/outputs/ApluSeLetter/output/ApluSeoutput.tex
+(./templates/outputs/ApluSeLetter/output/ApluSeoutput.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/letter.cls
@@ -304,13 +304,7 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count194
 \l__pdf_internal_box=\box51
 )
-(outputs/ApluSeLetter/output/ApluSeoutput.aux
-LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 5
-.
-
-(/usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
-File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-))
+(templates/outputs/ApluSeLetter/output/ApluSeoutput.aux)
 \openout1 = `ApluSeoutput.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -328,6 +322,12 @@ LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 11.
+LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 1
+1.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
+File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+)
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Info: Redefining \th on input line 11.
 
@@ -422,7 +422,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--69
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc} <./A.png>
-] (outputs/ApluSeLetter/output/ApluSeoutput.aux)
+] (templates/outputs/ApluSeLetter/output/ApluSeoutput.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -430,18 +430,18 @@ L3 programming layer <2024-02-20>
  ) 
 Here is how much of TeX's memory you used:
  3519 strings out of 474116
- 55544 string characters out of 5743682
+ 55634 string characters out of 5743682
  1928187 words of memory out of 5000000
  25872 multiletter control sequences out of 15000+600000
  565318 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,273b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,6n,65p,283b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></
 usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></us
 r/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on outputs/ApluSeLetter/output/ApluSeoutput.pdf (1 page, 85319 b
-ytes).
+Output written on templates/outputs/ApluSeLetter/output/ApluSeoutput.pdf (1 pag
+e, 86427 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  18 compressed objects within 1 object stream

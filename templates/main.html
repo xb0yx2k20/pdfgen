@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style="text-align: center; background: linear-gradient(to right, #553c9a 45%, #ee4b2b); -webkit-background-clip: text; color: transparent;">ASG - ApluSe Generator</h1>
+
+<style>
+    .card-img-top {
+        width: 100%; /* Ширина 100% для заполнения карточки */
+        height: auto; /* Высота автоматически */
+        aspect-ratio: 16 / 9; /* Задание соотношения сторон 16:9 */
+        object-fit: cover; /* Обрезать изображение, если оно не вписывается в размеры */
+    }
+    .card {
+        transition: transform 0.2s; /* Эффект при наведении */
+    }
+    .card:hover {
+        transform: scale(1.05); /* Увеличение при наведении */
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+        <a href="MgtuReport" class="text-decoration-none"> <!-- Замените на нужный URL -->
+            <div class="card">
+                <img src="https://avatars.mds.yandex.net/i?id=47a1999513c5732c1eecd8495dbe7a26_l-5342121-images-thumbs&n=13" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">MGTU Lab Reports</h5>
+                    <p class="card-text">Here will be more templates...</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col">
+        <a href="nrpla" class="text-decoration-none"> <!-- Замените на нужный URL -->
+            <div class="card">
+                <img src="https://avatars.mds.yandex.net/get-altay/9770129/2a000001899c309ef973f0a5d0531bdb80bd/orig" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">NRPLA</h5>
+                    <p class="card-text">Here will be more templates...</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col">
+        <a href="asg" class="text-decoration-none"> <!-- Замените на нужный URL -->
+            <div class="card">
+                <img src="https://static.tildacdn.com/tild3061-3236-4364-b532-373963666561/IMG_2459.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">ApluSe Letter</h5>
+                    <p class="card-text">Here will be more templates...</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

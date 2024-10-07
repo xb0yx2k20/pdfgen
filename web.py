@@ -12,7 +12,7 @@ def index_nrpla():
     return render_template('nrpla.html', pdfsrc='/static/output.pdf')
 
 
-@app.route('/a')
+@app.route('/asg')
 def index_a():
     return render_template('ApluseLetterTeamplate.html', pdfsrc='/static/output.pdf')
 
@@ -104,7 +104,9 @@ def handle_update_data_apluseletter(data):
         'address': data.get('address'),
         'whom': data.get('whom'),
         'dear': data.get('dear'),
-        'body': data.get('body')
+        'body': data.get('body'),
+        'senderNS': data.get('senderNS'),
+        'senderSt': data.get('senderSt')
     }
 
     # Пути к файлам
@@ -124,7 +126,7 @@ def handle_update_data_apluseletter(data):
 
 @app.route('/')
 def index_letter():
-    return render_template('test.html')
+    return render_template('main.html')
 
 
 @app.route('/MgtuReport')
@@ -151,4 +153,4 @@ def clean_up_files(file_list):
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=3333, debug=True, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', debug=True, allow_unsafe_werkzeug=True)

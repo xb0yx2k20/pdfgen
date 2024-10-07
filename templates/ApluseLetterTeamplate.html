@@ -6,6 +6,10 @@
         <!-- Левая колонка с текстовой формой -->
         <div class="col-md-6 d-flex flex-column" style="padding: 20px; overflow-y: auto;">
 
+            <h1 style="text-align: center; font-weight: bold;">
+                ApluSe Letter Form #1 
+                <!-- <input type="text" id="num" name="num" class="form-control" oninput="sendData()" required> -->
+            </h1>
 
             <p>
                 Письмо о « <input type="text" id="about" name="about" oninput="sendData()" required>» <br>
@@ -13,12 +17,18 @@
                 Адрес: <input type="text" id="address" name="address" oninput="sendData()" required> 
                 Кому: <input type="text" id="whom" name="whom" oninput="sendData()" required> <br>
                 Обращение: <input type="text" id="dear" name="dear" oninput="sendData()" required> <br>
-                Тело: <textarea id="body" name="body" style="
-                    width: 50%;
+                Тело: <br>
+                <textarea id="body" name="body" style="
+                    width: 100%;
                     overflow: hidden; /* Скрываем полосу прокрутки */
                     resize: none; /* Запрет на изменение размера вручную */"
 
                 placeholder="Введите текст..."></textarea>
+            </p>
+
+            <p>
+                ФИО отправителя: <input type="text" id="senderNS" name="senderNS" oninput="sendData()" required> <br>
+                Должность отправителя: <input type="text" id="senderSt" name="senderSt" oninput="sendData()" required>
             </p>
 
             <button type="button" class="btn btn-primary mt-3" onclick="clearStorage()">Очистить поля</button>
@@ -58,7 +68,7 @@
 
     // Функция для загрузки данных из localStorage
     function loadData() {
-        const fields = ['about', 'object', 'address', 'whom', 'dear', 'body'];
+        const fields = ['about', 'object', 'address', 'whom', 'dear', 'body', 'senderNS', 'senderSt'];
         
         fields.forEach(field => {
             const value = localStorage.getItem(field);
@@ -78,7 +88,7 @@
 
     // Функция отправки данных на сервер при каждом изменении
     function sendData() {
-        const fields = ['about', 'object', 'address', 'whom', 'dear', 'body'];
+        const fields = ['about', 'object', 'address', 'whom', 'dear', 'body', 'senderNS', 'senderSt'];
         const formData = {};
     
         fields.forEach(field => {

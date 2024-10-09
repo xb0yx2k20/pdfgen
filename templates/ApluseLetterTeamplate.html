@@ -1,6 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    /* Общие стили для input */
+    input[type="text"] {
+        height: 20px;
+        padding: 8px 12px; /* Отступы внутри инпута */
+        font-weight: bolder;
+        font-style: italic;
+    }
+
+    body {
+        font-family: Arial, sans-serif; /* Шрифт для всего документа */
+    }
+
+    .editor {
+        width: 100%; /* Полная ширина */
+        min-height: 100px;
+        max-height: 500px;
+        padding: 10px;
+        font-size: 16px; /* Размер шрифта для редактора */
+        line-height: 1.5;
+        overflow-y: hidden; /* Скрыть полосу прокрутки */
+        border: 1px solid #ccc;
+        resize: none; /* Отключить ручное изменение размера */
+        background-color: #f8f9fa; /* Цвет фона редактора */
+        border-radius: 0.25rem; /* Закругленные углы */
+    }
+
+    /* Настройки для кнопок */
+    .toolbar {
+        display: flex; /* Используем flexbox для размещения кнопок */
+        flex-wrap: wrap; /* Обеспечиваем перенос кнопок на новую строку */
+        margin-bottom: 10px; /* Отступ снизу */
+    }
+
+    .toolbar button {
+        flex: 1 1 auto; /* Каждая кнопка занимает равное пространство и может сжиматься */
+        margin: 5px; /* Отступы между кнопками */
+        padding: 10px; /* Отступы внутри кнопок */
+        font-size: 14px; /* Меньший размер шрифта для мобильных */
+        cursor: pointer; /* Указатель при наведении на кнопку */
+    }
+
+    @media (max-width: 576px) { /* Настройки для мобильных устройств */
+        .editor {
+            font-size: 14px; /* Уменьшаем размер шрифта для мобильных */
+        }
+
+        .toolbar button {
+            padding: 8px; /* Меньшие отступы для кнопок на мобильных */
+            font-size: 12px; /* Меньший размер шрифта для кнопок */
+        }
+    }
+</style>
 <div class="container-fluid">
     <div class="row" style="height: 100vh;"> <!-- Задаем высоту контейнера -->
         <!-- Левая колонка с текстовой формой -->
@@ -17,19 +70,29 @@
                 Адрес: <input type="text" id="address" name="address" oninput="sendData()" required> 
                 Кому: <input type="text" id="whom" name="whom" oninput="sendData()" required> <br>
                 Обращение: <input type="text" id="dear" name="dear" oninput="sendData()" required> <br>
-                Тело: <br>
-                <textarea id="body" name="body" style="
-                    width: 100%;
-                    overflow: hidden; /* Скрываем полосу прокрутки */
-                    resize: none; /* Запрет на изменение размера вручную */"
+                
 
-                placeholder="Введите текст..."></textarea>
+                
             </p>
 
             <p>
                 ФИО отправителя: <input type="text" id="senderNS" name="senderNS" oninput="sendData()" required> <br>
                 Должность отправителя: <input type="text" id="senderSt" name="senderSt" oninput="sendData()" required>
             </p>
+
+            <div class="row mt-4"> 
+                <div class="col-12">
+                    <div id="editor" class="editor" contenteditable="true" oninput="autoResize(); collectEditorData()"></div>
+        
+                    <div class="toolbar">
+                        <button class="btn btn-primary" onclick="execCommand('bold')">Жирный</button>
+                        <button class="btn btn-primary" onclick="execCommand('italic')">Курсив</button>
+                        <button class="btn btn-primary" onclick="execCommand('underline')">Подчеркнутый</button>
+                        <button class="btn btn-primary" onclick="execCommand('insertOrderedList')">Нумерованный список</button>
+                        <button class="btn btn-primary" onclick="execCommand('insertUnorderedList')">Маркированный список</button>
+                    </div>
+                </div>
+            </div>
 
             <button type="button" class="btn btn-primary mt-3" onclick="clearStorage()">Очистить поля</button>
         </div>
@@ -49,76 +112,5 @@
 <!-- Подключение Bootstrap JS и других зависимостей -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-
-<script>
-    const socket = io();
-
-    const textarea = document.getElementById('body');
-
-    textarea.addEventListener('input', function() {
-        this.style.height = 'auto'; // Сбрасываем высоту
-        this.style.height = this.scrollHeight + 'px'; // Устанавливаем новую высоту
-        
-        const text = textarea.value; // Получаем текст из textarea
-
-        sendData();
-        
-
-    });
-
-    // Функция для загрузки данных из localStorage
-    function loadData() {
-        const fields = ['about', 'object', 'address', 'whom', 'dear', 'body', 'senderNS', 'senderSt'];
-        
-        fields.forEach(field => {
-            const value = localStorage.getItem(field);
-            // if (value) {
-            document.getElementById(field).value = value; // Заполняем поле данными
-            
-        });
-        const formData = {};
-
-        fields.forEach(field => {
-            formData[field] = document.getElementById(field).value;
-        });
-        socket.emit('update_data_apluseletter', formData);
-
-    }
-    
-
-    // Функция отправки данных на сервер при каждом изменении
-    function sendData() {
-        const fields = ['about', 'object', 'address', 'whom', 'dear', 'body', 'senderNS', 'senderSt'];
-        const formData = {};
-    
-        fields.forEach(field => {
-            formData[field] = document.getElementById(field).value;
-            const value = formData[field]
-            localStorage.setItem(field, value); // Сохраняем данные в localStorage
-        });
-
-        // Отправляем данные на сервер через WebSocket
-        socket.emit('update_data_apluseletter', formData);
-    }
-
-    // Получение обновленного PDF и отображение в object
-    socket.on('update_pdf', function(data) {
-        if (data.error) {
-            console.error('Error generating PDF:', data.error);
-        } else {
-            // Преобразуем строку обратно в бинарный PDF файл
-            const pdfBlob = new Blob([new Uint8Array(data.pdf_data.split('').map(char => char.charCodeAt(0)))], { type: 'application/pdf' });
-            const pdfUrl = URL.createObjectURL(pdfBlob);
-            document.getElementById('pdfPreview').data = pdfUrl;
-        }
-    });
-
-    function clearStorage() {
-        localStorage.clear();
-        loadData();
-        alert('Очищено!')
-    }
-
-    window.onload = loadData;
-</script>
+<script src="../static/ApluseLetterTemplate.js"></script>
 {% endblock %}

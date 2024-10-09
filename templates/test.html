@@ -1,35 +1,92 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Динамическое поле ввода</title>
+{% extends 'base.html' %}
+
+{% block content %}
+
     <style>
-        textarea {
-            width: 50%;
-            overflow: hidden; /* Скрываем полосу прокрутки */
-            resize: none; /* Запрет на изменение размера вручную */
+        /* Общие стили для input */
+        input[type="text"] {
+            height: 20px;
+            padding: 8px 12px; /* Отступы внутри инпута */
+            font-weight: bolder;
+            font-style: italic;
+        }
+
+        body {
+            font-family: Arial, sans-serif; /* Шрифт для всего документа */
+        }
+
+        .editor {
+            width: 100%; /* Полная ширина */
+            min-height: 100px;
+            max-height: 500px;
+            padding: 10px;
+            font-size: 16px; /* Размер шрифта для редактора */
+            line-height: 1.5;
+            overflow-y: hidden; /* Скрыть полосу прокрутки */
+            border: 1px solid #ccc;
+            resize: none; /* Отключить ручное изменение размера */
+            background-color: #f8f9fa; /* Цвет фона редактора */
+            border-radius: 0.25rem; /* Закругленные углы */
+        }
+
+        /* Настройки для кнопок */
+        .toolbar {
+            display: flex; /* Используем flexbox для размещения кнопок */
+            flex-wrap: wrap; /* Обеспечиваем перенос кнопок на новую строку */
+            margin-bottom: 10px; /* Отступ снизу */
+        }
+
+        .toolbar button {
+            flex: 1 1 auto; /* Каждая кнопка занимает равное пространство и может сжиматься */
+            margin: 5px; /* Отступы между кнопками */
+            padding: 10px; /* Отступы внутри кнопок */
+            font-size: 14px; /* Меньший размер шрифта для мобильных */
+            cursor: pointer; /* Указатель при наведении на кнопку */
+        }
+
+        @media (max-width: 576px) { /* Настройки для мобильных устройств */
+            .editor {
+                font-size: 14px; /* Уменьшаем размер шрифта для мобильных */
+            }
+
+            .toolbar button {
+                padding: 8px; /* Меньшие отступы для кнопок на мобильных */
+                font-size: 12px; /* Меньший размер шрифта для кнопок */
+            }
         }
     </style>
-</head>
-<body>
 
-<textarea id="dynamicTextarea" placeholder="Введите текст..."></textarea>
-<div id="output"></div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div id="editor" class="editor" contenteditable="true" oninput="autoResize()"></div>
 
-<script>
-    const textarea = document.getElementById('dynamicTextarea');
-    const output = document.getElementById('output');
+            <div class="toolbar">
+                <button class="btn btn-primary" onclick="execCommand('bold')">Жирный</button>
+                <button class="btn btn-primary" onclick="execCommand('italic')">Курсив</button>
+                <button class="btn btn-primary" onclick="execCommand('underline')">Подчеркнутый</button>
+                <button class="btn btn-primary" onclick="execCommand('insertOrderedList')">Нумерованный список</button>
+                <button class="btn btn-primary" onclick="execCommand('insertUnorderedList')">Маркированный список</button>
+            </div>
+        </div>
+    </div>
 
-    textarea.addEventListener('input', function() {
-        this.style.height = 'auto'; // Сбрасываем высоту
-        this.style.height = this.scrollHeight + 'px'; // Устанавливаем новую высоту
-        
-        const text = textarea.value; // Получаем текст из textarea
-        console.log(text)
-        output.textContent = 'Введенный текст: ' + text; // Отображаем текст
-    });
-</script>
+    <script>
+        const editor = document.getElementById('editor');
 
-</body>
-</html>
+        // Функция для автоматического изменения размера редактора
+        function autoResize() {
+            editor.style.height = 'auto'; // Сначала сбрасываем высоту
+            editor.style.height = editor.scrollHeight + 'px'; // Устанавливаем новую высоту
+        }
+
+        // Функция для применения команды форматирования
+        function execCommand(command) {
+            document.execCommand(command, false, null);
+            autoResize(); // Обновляем размер после применения команды
+        }
+
+        // Первоначальный вызов для установки высоты при загрузке страницы
+        autoResize();
+    </script>
+    
+{% endblock %}

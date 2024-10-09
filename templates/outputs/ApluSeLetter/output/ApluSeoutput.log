@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.17)  7 OCT 2024 19:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.17)  9 OCT 2024 17:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -304,13 +304,7 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count194
 \l__pdf_internal_box=\box51
 )
-(templates/outputs/ApluSeLetter/output/ApluSeoutput.aux
-LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 5
-.
-
-(/usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
-File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-))
+(templates/outputs/ApluSeLetter/output/ApluSeoutput.aux)
 \openout1 = `ApluSeoutput.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -328,6 +322,12 @@ LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 11.
+LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 1
+1.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
+File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+)
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Info: Redefining \th on input line 11.
 
@@ -398,23 +398,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--22
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 58.
+(Font)              <12> on input line 59.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 58.
+(Font)              <8> on input line 59.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 58.
+(Font)              <6> on input line 59.
 
-Overfull \hbox (45.5259pt too wide) in paragraph at lines 58--59
+Overfull \hbox (45.5259pt too wide) in paragraph at lines 59--60
  []$[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--72
+Underfull \hbox (badness 10000) in paragraph at lines 69--73
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--72
+Underfull \hbox (badness 10000) in paragraph at lines 69--73
 
  []
 
@@ -441,7 +441,7 @@ Here is how much of TeX's memory you used:
 usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></us
 r/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
 Output written on templates/outputs/ApluSeLetter/output/ApluSeoutput.pdf (1 pag
-e, 86834 bytes).
+e, 82278 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  18 compressed objects within 1 object stream

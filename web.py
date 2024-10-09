@@ -104,7 +104,7 @@ def handle_update_data_apluseletter(data):
         'address': data.get('address'),
         'whom': data.get('whom'),
         'dear': data.get('dear'),
-        'body': data.get('body'),
+        # 'body': data.get('body'),
         'senderNS': data.get('senderNS'),
         'senderSt': data.get('senderSt')
     }
@@ -133,6 +133,10 @@ def index_letter():
 def index_MgtuReport():
     return render_template('MgtuReport.html')
 
+@app.route('/test')
+def index_test():
+    return render_template('test.html')
+
 
 # Маршрут для скачивания PDF
 @app.route('/download_pdf')
@@ -153,4 +157,4 @@ def clean_up_files(file_list):
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', debug=True, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', port='9999', debug=True, allow_unsafe_werkzeug=True)

@@ -1,44 +1,33 @@
-function collectEditorData() {
-    const editor = document.getElementById('editor');
-    const editorContent = editor.innerHTML; // Получаем HTML-код из редактора
-    // const editorText = editor.innerText; // Получаем текст из редактора (без HTML-тегов)
-
-    // Пример: Отправка данных на сервер или дальнейшая обработка
-    console.log("Содержимое редактора:", editorContent);
-
-    // Отправка данных через WebSocket (если вы используете его)
-    socket.emit('update_editor_content', { content: editorContent });
-
-    // Вы также можете сохранить данные в localStorage, если это необходимо
-    localStorage.setItem('editorContent', editorContent);
-}
-
 const socket = io();
-const editor = document.getElementById('editor');
+const editor = document.getElementById('body');
 
-// Функция для автоматического изменения размера редактора
-function autoResize() {
-    editor.style.height = 'auto'; // Сначала сбрасываем высоту
-    editor.style.height = editor.scrollHeight + 'px'; // Устанавливаем новую высоту
+function collectEditorData() {
+    const editorContent = editor.innerHTML;
+    socket.emit('update_editor_content', { content: editorContent });
+    // alert(editorContent);
+    localStorage.setItem('body', editorContent);
 }
 
-// Функция для применения команды форматирования
+function autoResize() {
+    editor.style.height = 'auto';
+    editor.style.height = editor.scrollHeight + 'px';
+}
+
 function execCommand(command) {
     document.execCommand(command, false, null);
-    autoResize(); // Обновляем размер после применения команды
+    autoResize();
 }
 
-// Первоначальный вызов для установки высоты при загрузке страницы
 autoResize();
 
-// Функция для загрузки данных из localStorage
 function loadData() {
     const fields = ['about', 'object', 'address', 'whom', 'dear', 'senderNS', 'senderSt'];
 
+    document.getElementById('body').innerHTML = localStorage.getItem('body');
+
     fields.forEach(field => {
         const value = localStorage.getItem(field);
-        // if (value) {
-        document.getElementById(field).value = value; // Заполняем поле данными
+        document.getElementById(field).value = value;
     });
 
     const formData = {};
@@ -49,27 +38,26 @@ function loadData() {
     socket.emit('update_data_apluseletter', formData);
 }
 
-// Функция отправки данных на сервер при каждом изменении
 function sendData() {
     const fields = ['about', 'object', 'address', 'whom', 'dear', 'senderNS', 'senderSt'];
     const formData = {};
+    formData['body'] = editor.innerHTML;
+    localStorage.setItem('body', editor.innerHTML);
 
     fields.forEach(field => {
         formData[field] = document.getElementById(field).value;
         const value = formData[field];
-        localStorage.setItem(field, value); // Сохраняем данные в localStorage
+        localStorage.setItem(field, value);
     });
 
-    // Отправляем данные на сервер через WebSocket
+
     socket.emit('update_data_apluseletter', formData);
 }
 
-// Получение обновленного PDF и отображение в object
 socket.on('update_pdf', function(data) {
     if (data.error) {
         console.error('Error generating PDF:', data.error);
     } else {
-        // Преобразуем строку обратно в бинарный PDF файл
         const pdfBlob = new Blob([new Uint8Array(data.pdf_data.split('').map(char => char.charCodeAt(0)))], { type: 'application/pdf' });
         const pdfUrl = URL.createObjectURL(pdfBlob);
         document.getElementById('pdfPreview').data = pdfUrl;
@@ -77,9 +65,14 @@ socket.on('update_pdf', function(data) {
 });
 
 function clearStorage() {
-    localStorage.clear();
-    loadData();
-    alert('Очищено!');
+    // Запрос подтверждения у пользователя
+    if (confirm('Вы уверены, что хотите очистить все данные?')) {
+        localStorage.clear(); // Очищаем localStorage
+        loadData(); // Загружаем данные заново
+    }
 }
 
-window.onload = loadData;
+window.onload = function() {
+    loadData();
+    autoResize();
+};

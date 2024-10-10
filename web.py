@@ -2,6 +2,7 @@ import subprocess
 import os
 from flask import Flask, render_template, send_file
 from flask_socketio import SocketIO, emit
+from ai import gpt
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -97,14 +98,14 @@ def handle_update_data_nrpla(data):
 # Обработчик для ApluSeLetter через WebSocket
 @socketio.on('update_data_apluseletter')
 def handle_update_data_apluseletter(data):
-    # Данные для шаблона
+
     template_vars = {
         'about': "\\textbf{" + data.get('about') + "}",
         'object': data.get('object'),
         'address': data.get('address'),
         'whom': data.get('whom'),
         'dear': data.get('dear'),
-        # 'body': data.get('body'),
+        'body': data.get('body'),
         'senderNS': data.get('senderNS'),
         'senderSt': data.get('senderSt')
     }

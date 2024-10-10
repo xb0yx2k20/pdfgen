@@ -2,94 +2,112 @@
 
 {% block content %}
 <style>
-    /* Общие стили для input */
     input[type="text"] {
         height: 20px;
-        padding: 8px 12px; /* Отступы внутри инпута */
-        font-weight: bolder;
+        padding: 8px 12px;
+        font-weight: bold;
         font-style: italic;
     }
 
     body {
-        font-family: Arial, sans-serif; /* Шрифт для всего документа */
+        font-family: Arial, sans-serif;
     }
 
-    .editor {
-        width: 100%; /* Полная ширина */
+    .body {
+        width: 100%;
         min-height: 100px;
         max-height: 500px;
-        padding: 10px;
-        font-size: 16px; /* Размер шрифта для редактора */
+        padding: 10px 50px 10px 10px; /* Оставляем место для кнопки справа */
+        font-size: 16px;
         line-height: 1.5;
-        overflow-y: hidden; /* Скрыть полосу прокрутки */
         border: 1px solid #ccc;
-        resize: none; /* Отключить ручное изменение размера */
-        background-color: #f8f9fa; /* Цвет фона редактора */
-        border-radius: 0.25rem; /* Закругленные углы */
+        background-color: #f8f9fa;
+        border-radius: 0.25rem;
+        overflow-y: hidden;
+        resize: none;
     }
 
-    /* Настройки для кнопок */
     .toolbar {
-        display: flex; /* Используем flexbox для размещения кнопок */
-        flex-wrap: wrap; /* Обеспечиваем перенос кнопок на новую строку */
-        margin-bottom: 10px; /* Отступ снизу */
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
     }
 
     .toolbar button {
-        flex: 1 1 auto; /* Каждая кнопка занимает равное пространство и может сжиматься */
-        margin: 5px; /* Отступы между кнопками */
-        padding: 10px; /* Отступы внутри кнопок */
-        font-size: 14px; /* Меньший размер шрифта для мобильных */
-        cursor: pointer; /* Указатель при наведении на кнопку */
+        flex: 1 1 auto;
+        margin: 5px;
+        padding: 10px;
+        font-size: 14px;
+        cursor: pointer;
     }
 
-    @media (max-width: 576px) { /* Настройки для мобильных устройств */
-        .editor {
-            font-size: 14px; /* Уменьшаем размер шрифта для мобильных */
+    @media (max-width: 576px) {
+        .body {
+            font-size: 14px;
         }
 
         .toolbar button {
-            padding: 8px; /* Меньшие отступы для кнопок на мобильных */
-            font-size: 12px; /* Меньший размер шрифта для кнопок */
+            padding: 8px;
+            font-size: 12px;
         }
     }
+
+    .input-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .send-btn {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .send-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .send-btn:hover .send-icon {
+        filter: brightness(0.8);
+    }
 </style>
+
 <div class="container-fluid">
-    <div class="row" style="height: 100vh;"> <!-- Задаем высоту контейнера -->
+    <div class="row" style="height: 100vh;">
         <!-- Левая колонка с текстовой формой -->
         <div class="col-md-6 d-flex flex-column" style="padding: 20px; overflow-y: auto;">
-
-            <h1 style="text-align: center; font-weight: bold;">
-                ApluSe Letter Form #1 
-                <!-- <input type="text" id="num" name="num" class="form-control" oninput="sendData()" required> -->
-            </h1>
-
+            <h1 class="text-center font-weight-bold">ApluSe Letter Form #1</h1>
             <p>
-                Письмо о « <input type="text" id="about" name="about" oninput="sendData()" required>» <br>
-                Объект:  <input type="text" id="object" name="object" oninput="sendData()" required> <br> 
-                Адрес: <input type="text" id="address" name="address" oninput="sendData()" required> 
-                Кому: <input type="text" id="whom" name="whom" oninput="sendData()" required> <br>
-                Обращение: <input type="text" id="dear" name="dear" oninput="sendData()" required> <br>
-                
-
-                
+                Письмо о «<input type="text" id="about" name="about" oninput="sendData()" required>»<br>
+                Объект: <input type="text" id="object" name="object" oninput="sendData()" required><br>
+                Адрес: <input type="text" id="address" name="address" oninput="sendData()" required><br>
+                Кому: <input type="text" id="whom" name="whom" oninput="sendData()" required><br>
+                Обращение: <input type="text" id="dear" name="dear" oninput="sendData()" required><br>
             </p>
 
             <p>
-                ФИО отправителя: <input type="text" id="senderNS" name="senderNS" oninput="sendData()" required> <br>
+                ФИО отправителя: <input type="text" id="senderNS" name="senderNS" oninput="sendData()" required><br>
                 Должность отправителя: <input type="text" id="senderSt" name="senderSt" oninput="sendData()" required>
             </p>
 
-            <div class="row mt-4"> 
+            <div class="row mt-4">
                 <div class="col-12">
-                    <div id="editor" class="editor" contenteditable="true" oninput="autoResize(); collectEditorData()"></div>
-        
                     <div class="toolbar">
                         <button class="btn btn-primary" onclick="execCommand('bold')">Жирный</button>
                         <button class="btn btn-primary" onclick="execCommand('italic')">Курсив</button>
                         <button class="btn btn-primary" onclick="execCommand('underline')">Подчеркнутый</button>
                         <button class="btn btn-primary" onclick="execCommand('insertOrderedList')">Нумерованный список</button>
                         <button class="btn btn-primary" onclick="execCommand('insertUnorderedList')">Маркированный список</button>
+                    </div>
+                    <div class="input-container">
+                        <div id="body" class="body" contenteditable="true" oninput="autoResize(); sendData()"></div>
+                        <button class="send-btn" onclick="sendMessage()">
+                            <img src="../static/send.svg" alt="Send" class="send-icon">
+                        </button>
                     </div>
                 </div>
             </div>
@@ -98,18 +116,17 @@
         </div>
 
         <!-- Правая колонка с предпросмотром PDF -->
-        <div class="col-md-6" style="padding: 0;">
+        <div class="col-md-6 p-0">
             <object id="pdfPreview" type="application/pdf" width="100%" height="100%">
                 <p>Ваш браузер не поддерживает просмотр PDF. <a href="{{ pdfsrc }}">Скачайте PDF файл</a>.</p>
             </object>
             <a href="/download_pdf" download>
-                <button type="button" class="btn btn-primary mt-3" >Скачать PDF</button>
+                <button type="button" class="btn btn-primary mt-3">Скачать PDF</button>
             </a>
         </div>
     </div>
 </div>
 
-<!-- Подключение Bootstrap JS и других зависимостей -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 <script src="../static/ApluseLetterTemplate.js"></script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Input</title>
+    <style>
+        /* Контейнер для текстового поля и кнопки */
+        .input-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Текстовое поле */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 50px 10px 10px; /* Оставляем место для кнопки справа */
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+        }
+
+        /* Кнопка отправки внутри поля */
+        .send-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        /* Стилизация кнопки при наведении */
+        .send-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="input-container">
+    <input type="text" id="message" placeholder="Введите сообщение...">
+    <button class="send-btn" onclick="sendMessage()">&#10148;</button> <!-- Символ стрелки -->
+</div>
+
+<script>
+    // Функция для отправки сообщения
+    function sendMessage() {
+        const message = document.getElementById('message').value;
+        if (message.trim() !== '') {
+            alert('Сообщение отправлено: ' + message);
+            document.getElementById('message').value = ''; // Очистка поля после отправки
+        }
+    }
+
+    // Обработка нажатия клавиши Enter для отправки сообщения
+    document.getElementById('message').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>
+
+</body>
+</html>

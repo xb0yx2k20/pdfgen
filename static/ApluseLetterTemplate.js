@@ -1,12 +1,6 @@
 const socket = io();
 const editor = document.getElementById('body');
 
-function collectEditorData() {
-    const editorContent = editor.innerHTML;
-    socket.emit('update_editor_content', { content: editorContent });
-    // alert(editorContent);
-    localStorage.setItem('body', editorContent);
-}
 
 function autoResize() {
     editor.style.height = 'auto';
@@ -18,13 +12,13 @@ function execCommand(command) {
     autoResize();
 }
 
-autoResize();
 
 function loadData() {
     const fields = ['about', 'object', 'address', 'whom', 'dear', 'senderNS', 'senderSt'];
 
     document.getElementById('body').innerHTML = localStorage.getItem('body');
 
+    
     fields.forEach(field => {
         const value = localStorage.getItem(field);
         document.getElementById(field).value = value;
@@ -41,8 +35,6 @@ function loadData() {
 function sendData() {
     const fields = ['about', 'object', 'address', 'whom', 'dear', 'senderNS', 'senderSt'];
     const formData = {};
-    formData['body'] = editor.innerHTML;
-    localStorage.setItem('body', editor.innerHTML);
 
     fields.forEach(field => {
         formData[field] = document.getElementById(field).value;
@@ -71,6 +63,21 @@ function clearStorage() {
         loadData(); // Загружаем данные заново
     }
 }
+
+
+function sendBody() {
+    const bodyData = {};
+    bodyData['body'] = editor.innerHTML;
+    localStorage.setItem('body', editor.innerHTML);
+
+    socket.emit('update_data_apluseletter_body', bodyData);
+};
+
+function saveBody() {
+    localStorage.setItem('body', editor.innerHTML);
+
+}
+
 
 window.onload = function() {
     loadData();

@@ -36,8 +36,13 @@ def compile_tex_to_pdf(tex_file_path, pdf_file_directory):
             print(f"Directory does not exist: {pdf_file_directory}")
             return False
 
-        subprocess.run(['pdflatex', '-output-directory=' + pdf_file_directory, tex_file_path], check=True)
-
+        with open('pdflatex_output.log', 'w') as log_file:
+            subprocess.run(
+                ['pdflatex', '-output-directory=' + pdf_file_directory, tex_file_path], 
+                check=True, 
+                stdout=log_file,  # Перенаправляем стандартный вывод
+                stderr=log_file   # Перенаправляем стандартные ошибки
+            )
         return True
 
     except subprocess.CalledProcessError as e:
@@ -105,10 +110,10 @@ def handle_update_data_apluseletter(data):
         'address': data.get('address'),
         'whom': data.get('whom'),
         'dear': data.get('dear'),
-        'body': data.get('body'),
         'senderNS': data.get('senderNS'),
         'senderSt': data.get('senderSt')
     }
+
 
     # Пути к файлам
     template_file = 'APLtemplate.tex'
@@ -123,6 +128,31 @@ def handle_update_data_apluseletter(data):
         send_pdf_via_socket(pdf_file_path)
     else:
         emit('update_pdf', {'error': 'Error generating PDF'})
+
+
+@socketio.on('update_data_apluseletter_body')
+def handle_update_data_apluseletter_body(data):
+
+    template_vars = {
+        'body': gpt(data.get('body'))
+    }
+
+    # print(gpt(data.get('body')), '\n\n\n\n\n\n\t\t', template_vars['body'])
+
+    # Пути к файлам
+    template_file = 'APLtemplate.tex'
+    tex_file_path = 'templates/outputs/ApluSeLetter/output/ApluSeoutput.tex'
+    pdf_file_path = 'templates/outputs/ApluSeLetter/output/ApluSeoutput.pdf'
+    pdf_file_directory = 'templates/outputs/ApluSeLetter/output'
+
+    # Рендеринг и компиляция
+    render_and_save_template(template_file, tex_file_path, **template_vars)
+
+    if compile_tex_to_pdf(tex_file_path, pdf_file_directory):
+        send_pdf_via_socket(pdf_file_path)
+    else:
+        emit('update_pdf', {'error': 'Error generating PDF'})
+
 
 
 @app.route('/')
@@ -158,4 +188,4 @@ def clean_up_files(file_list):
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port='9999', debug=True, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', port='9999', debug=False, allow_unsafe_werkzeug=True)

@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1728917664.99634 "/Users/xb0yx2k20/Documents/pdfgen/templates/outputs/ApluSeLetter/output/ApluSeoutput.tex" "ApluSeoutput.pdf" "ApluSeoutput" 1728917665.40646 2
-  "/Users/xb0yx2k20/Documents/pdfgen/templates/outputs/ApluSeLetter/output/ApluSeoutput.tex" 1728917664.18129 1620 bee639f2728e34a40cb6e6d2ea802608 ""
+["pdflatex"] 1728914793.12228 "/Users/xb0yx2k20/Documents/pdfgen/templates/APLtemplate.tex" "APLtemplate.pdf" "APLtemplate" 1728914793.59144 2
+  "/Users/xb0yx2k20/Documents/pdfgen/templates/APLtemplate.tex" 1728914792.33095 1734 c566a0eb6c66a276974eca6d9ed7ec3a ""
   "/Users/xb0yx2k20/Library/texlive/2024/texmf-var/fonts/tfm/lh/lh-t2a/labx1200.tfm" 1726664636.80604 3308 eee81981029f67083258db36df06e523 ""
   "/Users/xb0yx2k20/Library/texlive/2024/texmf-var/fonts/tfm/lh/lh-t2a/larm0900.tfm" 1727700356.67361 3244 8db84377f89b8850acd19c9879de82e7 ""
   "/Users/xb0yx2k20/Library/texlive/2024/texmf-var/fonts/tfm/lh/lh-t2a/larm1200.tfm" 1726664639.29028 3240 c2435f2b5cd66d4930bc29b8df87967e ""
@@ -54,10 +54,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1726590734 8221429 7a0aceb75363dd0662ed41c2c65f5a75 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "A.png" 0 -1 0 ""
-  "ApluSeoutput.aux" 1728917665.34716 132 c89ce2280ab791babe7d68932f1c9de6 "pdflatex"
-  "ApluSeoutput.tex" 1728917664.18129 1620 bee639f2728e34a40cb6e6d2ea802608 ""
+  "APLtemplate.aux" 1728914793.52961 132 c89ce2280ab791babe7d68932f1c9de6 "pdflatex"
+  "APLtemplate.tex" 1728914792.33095 1734 c566a0eb6c66a276974eca6d9ed7ec3a ""
   (generated)
-  "ApluSeoutput.aux"
-  "ApluSeoutput.log"
-  "ApluSeoutput.pdf"
+  "APLtemplate.aux"
+  "APLtemplate.log"
+  "APLtemplate.pdf"
   (rewritten before read)

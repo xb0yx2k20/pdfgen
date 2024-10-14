@@ -104,8 +104,8 @@
                         <button class="btn btn-primary" onclick="execCommand('insertUnorderedList')">Маркированный список</button>
                     </div>
                     <div class="input-container">
-                        <div id="body" class="body" contenteditable="true" oninput="autoResize(); sendData()"></div>
-                        <button class="send-btn" onclick="sendMessage()">
+                        <div id="body" class="body" contenteditable="true" oninput="autoResize(); saveBody()"></div>
+                        <button class="send-btn" onclick="sendBody()">
                             <img src="../static/send.svg" alt="Send" class="send-icon">
                         </button>
                     </div>

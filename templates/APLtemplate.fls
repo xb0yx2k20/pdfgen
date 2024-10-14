@@ -1,9 +1,9 @@
-PWD /Users/xb0yx2k20/Documents/pdfgen/templates/outputs/ApluSeLetter/output
+PWD /Users/xb0yx2k20/Documents/pdfgen/templates
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/xb0yx2k20/Documents/pdfgen/templates/outputs/ApluSeLetter/output/ApluSeoutput.tex
-OUTPUT ApluSeoutput.log
+INPUT /Users/xb0yx2k20/Documents/pdfgen/templates/APLtemplate.tex
+OUTPUT APLtemplate.log
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/letter.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/letter.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/size12.clo
@@ -49,7 +49,7 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-OUTPUT ApluSeoutput.aux
+OUTPUT APLtemplate.aux
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
@@ -78,10 +78,10 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT /Users/xb0yx2k20/Library/texlive/2024/texmf-var/fonts/tfm/lh/lh-t2a/lati1200.tfm
 INPUT /Users/xb0yx2k20/Library/texlive/2024/texmf-var/fonts/tfm/lh/lh-t2a/lati0900.tfm
 INPUT /Users/xb0yx2k20/Library/texlive/2024/texmf-var/fonts/tfm/lh/lh-t2a/larm0900.tfm
-OUTPUT ApluSeoutput.pdf
+OUTPUT APLtemplate.pdf
 INPUT /usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc
-INPUT ApluSeoutput.aux
+INPUT APLtemplate.aux
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti9.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb

@@ -31,6 +31,6 @@ def gpt(user_question):
         return (f"Ошибка: {str(e)}")
 
 
-question = 'Вот тот самый код: <ol><li><b style="text-align: var(--bs-body-text-align);">Проверка</b><br></li><li><i style="text-align: var(--bs-body-text-align);">Chat</i><br></li><li><u style="text-align: var(--bs-body-text-align);"><b><i>GPT</i></b></u><br></li></ol>'
+question = '<ol><li><b style="text-align: var(--bs-body-text-align);">Проверка</b><br></li><li><i style="text-align: var(--bs-body-text-align);">Chat</i><br></li><li><u style="text-align: var(--bs-body-text-align);"><b><i>GPT</i></b></u><br></li></ol>'
 
 print(gpt(question))

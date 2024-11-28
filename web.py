@@ -160,9 +160,6 @@ def index_letter():
     return render_template('main.html')
 
 
-@app.route('/MgtuReport')
-def index_MgtuReport():
-    return render_template('MgtuReport.html')
 
 @app.route('/test')
 def index_test():

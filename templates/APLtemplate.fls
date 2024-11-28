@@ -49,6 +49,9 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+INPUT ./APLtemplate.aux
+INPUT ./APLtemplate.aux
+INPUT APLtemplate.aux
 OUTPUT APLtemplate.aux
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/cyrillic/t2acmr.fd
